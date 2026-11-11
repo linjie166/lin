@@ -1,0 +1,326 @@
+<html>
+<!doctype html>
+<html lang="en" translate="no">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+AI Home — Sunlit Tree</title>
+:root{
+--green:#0b8457;--red:#c71a1a;--muted:#4b5563;
+--hdr:6.25rem;--pad:6.25%;
+--gap:.65rem;--gap-sm:.35rem;
+--img-h:110px;--img-h-sm:75px;
+--fs-label:14px;--fs-label-sm:11px;
+--row-min:120px;
+--card-bg:#fff;--card-radius:12px;
+--card-shadow:0 6px 18px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+font-family:'Segoe UI',Arial,sans-serif;
+background:linear-gradient(180deg,#e8fbeb,#daf6e0);
+color:#0b2b22;
+-webkit-font-smoothing:antialiased;
+overflow:hidden;
+}
+header.site-header{
+position:relative;top:0;left:var(--pad);right:var(--pad);
+height:var(--hdr);display:flex;flex-direction:column;z-index:50;
+}
+.top-row{display:flex;align-items:center;justify-content:space-between;height:1.2rem;padding-top:.8rem}
+.logo{display:flex;align-items:center;gap:.5rem}
+.logo img{height:88px;width:auto;border-radius:6px}
+nav.top-nav{display:flex;gap:calc(1.25rem + 3ch);align-items:center}
+.nav-item{font-size:18px;color:var(--muted);font-weight:600;text-decoration:none}
+.banner{display:flex;align-items:center;justify-content:center;height:3rem}
+.slogan{font-size:28px;color:var(--red);font-weight:800}
+.main{display:flex;margin-top:var(--hdr)}
+.sidebar{
+width:20%;min-width:180px;padding-top:.75rem;
+position:fixed;top:var(--hdr);left:var(--pad);bottom:0;
+}
+.sidebar-item{
+display:block;width:100%;padding:.6rem .75rem;color:var(--muted);
+font-size:16px;border-radius:8px;cursor:pointer;
+background:0 0;border:0;text-align:left;
+}
+.sidebar-item.active{color:var(--green);background:rgba(11,132,87,.06)}
+.categories-row{
+position:fixed;top:11rem;left:26.25%;right:6.25%;height:2.4rem;
+display:flex;align-items:center;justify-content:center;
+color:var(--red);font-weight:700;z-index:46;
+background:rgba(255,255,255,.85);
+backdrop-filter:blur(6px);
+border-bottom:1px solid rgba(0,0,0,.05);
+}
+.categories-center{font-size:18px}
+.scroll-container{
+position:absolute;top:13.4rem;
+left:calc(var(--pad) + 20%);right:var(--pad);bottom:0;
+overflow-y:auto;padding:1rem 2ch 1rem 0;
+}
+.scroll-container img{max-width:100%;height:auto}
+.section-title{
+margin:1.5rem 0 1rem;text-align:center;
+font:700 18px/1.5 'Segoe UI',Arial,sans-serif;
+color:var(--red);
+}
+.card-grid{
+display:grid;
+grid-template-columns:repeat(5,minmax(0,1fr));
+grid-auto-rows:minmax(var(--row-min),auto);
+gap:var(--gap);
+}
+#content-grid{margin-bottom:1rem}
+.card{
+display:flex;min-width:0;flex-direction:column;
+align-items:center;justify-content:center;padding:.5rem;
+background:var(--card-bg);border-radius:var(--card-radius);
+box-shadow:var(--card-shadow);
+text-decoration:none;color:inherit;
+transition:transform .2s,box-shadow .2s;
+}
+.card:hover{transform:translateY(-4px)}
+.card img{display:block;width:100%;height:var(--img-h);object-fit:contain}
+.card span{
+max-width:100%;padding-top:.35rem;font-size:var(--fs-label);
+overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.after-audio-toggle{
+display:block;margin:1.25rem auto;padding:.5rem 1rem;
+border:0;border-radius:8px;background:var(--red);color:#fff;
+font:inherit;cursor:pointer;transition:filter .2s;
+}
+.after-audio-toggle:hover{filter:brightness(.92)}
+.logo-footer{text-align:center;margin-top:2rem}
+.logo-img{display:block;max-width:100%;height:auto;border-radius:6px;margin:0 auto .5rem}
+.logo-slogan{margin-top:.5rem;color:var(--muted)}
+.footer-spacer{height:2rem}
+.footer-nav{display:flex;justify-content:center;gap:2rem;margin-top:1.5rem}
+.footer-nav a{color:inherit}
+.site-footer{text-align:center;padding:2.5rem 0;margin-top:2rem;color:var(--muted)}
+@media(max-width:1024px){
+header.site-header{padding:0 1rem}
+.top-row{height:auto;min-height:1.2rem;gap:.75rem;flex-wrap:wrap}
+.logo img{height:clamp(48px,8vw,72px)}
+nav.top-nav{
+flex:1 1 auto;min-width:0;flex-wrap:wrap;
+justify-content:space-between;gap:.5rem clamp(.5rem,2vw,1rem);
+}
+.nav-item{font-size:clamp(.8rem,1.7vw,1rem);white-space:nowrap}
+.banner{height:auto;min-height:3rem;padding:.5rem 0}
+.slogan{max-width:100%;font-size:clamp(1rem,3vw,1.75rem);text-align:center}
+.main{display:block}
+.sidebar{position:relative;top:auto;left:auto;bottom:auto;width:100%;min-width:0;padding:0}
+.scroll-container{position:relative;top:auto;left:auto;right:auto;bottom:auto;overflow:visible;padding:0}
+.categories-row{position:static;height:auto;padding:.5rem 0}
+}
+@media(max-width:700px){
+header.site-header{height:auto}
+.logo img{height:48px}
+nav.top-nav{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 3ch}
+.nav-item{font-size:14px;text-align:center}
+.card-grid{gap:var(--gap-sm);grid-auto-rows:minmax(100px,auto)}
+.card{padding:.25rem}
+.card img{height:var(--img-h-sm)}
+.card span{font-size:var(--fs-label-sm)}
+}
+</style>
+</head>
+<header class="site-header">
+  <div class="top-row">
+    <a class="logo" href="index.html" aria-label="Back to home">
+      <img src="ok012_a.png" alt="Logo" onerror="this.src='https://picsum.photos/seed/logo/120/40'">
+    </a>
+    <nav class="top-nav" aria-label="Primary navigation">
+      <a href="blog.html" class="nav-item">Blog</a>
+      <a href="prompt.html" class="nav-item">Prompt</a>
+      <a href="life.html" class="nav-item">Life</a>
+      <a href="gv1.html" class="nav-item">Community</a>
+      <a href="pages/Join-Login.html" class="nav-item">Join &amp; Login</a>
+    </nav>
+  </div>
+  <div class="banner">
+    <div class="slogan">Learn and Practice AI Skills!</div>
+  </div>
+</header>
+<main class="main" role="main">
+  <aside id="sidebar" class="sidebar" aria-label="Sidebar"></aside>
+  <section class="content-wrap">
+    <div class="categories-row" role="region" aria-label="Category headings">
+      <div class="categories-center">AI-Category Links</div>
+    </div>
+
+    <div class="scroll-container">
+      <div id="content-grid" class="card-grid" aria-label="AI-Category Links"></div>
+      <div id="main-sections"></div>
+      <button id="more-toggle" class="after-audio-toggle" type="button" aria-expanded="false"
+        aria-controls="after-audio-sections">
+        Expand More Categories
+      </button>
+      <div id="after-audio-sections" hidden></div>
+      <div class="logo-footer">
+        <a href="index.html" aria-label="Back to home">
+          <img src="ok012_a.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
+        </a>
+        <div class="logo-slogan">Follow me, save me, and easily step into the AI era!</div>
+      </div>
+      <div class="footer-spacer"></div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="pages/Website%20collaboration.html">Website collaboration</a>
+        <a href="pages/About%20Us.html">About Us</a>
+        <a href="pages/Partners%20and%20Collaborators.html">Partners and Collaborators</a>
+      </nav>
+      <footer class="site-footer">
+        Copyright © 2025 AI &nbsp;&nbsp; Contact Us Email: udedv12@outlook.com
+      </footer>
+    </div>
+  </section>
+</main>
+(() => {
+'use strict';
+const CATEGORIES = [
+{ id:'life', label:'Life', title:'Life is sorted by AI', nav:true, main:true },
+{ id:'health', label:'Health', title:'Health is sorted by AI', nav:true, main:true },
+{ id:'campus', label:'Campus', title:'Campus is sorted by AI', nav:false, main:true },
+{ id:'work', label:'Work', title:'Work is sorted by AI', nav:true, main:true },
+{ id:'pro', label:'Pro', title:'Pro-applications is sorted by AI', nav:false, main:true },
+{ id:'design', label:'Design', title:'Design is sorted by AI', nav:false, main:true },
+{ id:'image', label:'Image', title:'Images are sorted by AI', nav:true, main:true },
+{ id:'video', label:'Video', title:'Video is sorted by AI', nav:true, main:true },
+{ id:'audio', label:'Audio', title:'Audio is sorted by AI', nav:true, main:true },
+{ id:'programming', label:'Programming', title:'Programming is sorted by AI', nav:false, main:false },
+{ id:'agent', label:'Agent', title:'Agent is sorted by AI', nav:false, main:false }
+];
+const SITE_DATA = {
+Category：
+[['bing.com',' aituji/Category'],['canva.com',' aituji/Category'],['character.ai',' aituji/Category'],['chatgpt.com','
+aituji/Category'],['claude.ai',' aituji/Category'],['cursor.com',' aituji/Category'],['gamma.app','
+aituji/Category'],['grok.com',' aituji/Category'],['kimi.com',' aituji/Category'],['lmarena.ai','
+aituji/Category']['manus.im',' aituji/Category']['notion.so',' aituji/Category']['openai.com','
+aituji/Category']['lovable.dev',' aituji/Category']['poe.com',' aituji/Category']],
+life:
+[['app.karpo.ai',' aituji/life'],['elsaspeak.com',' aituji/life'],['flash.co',' aituji/life'],['kindroid.ai','
+aituji/life'],['pi.ai',' aituji/life'],['replika.com',' aituji/life'],['sleepcycle.com','
+aituji/life'],['thefabulous.co',' aituji/life'],['wanderboat.ai',' aituji/life'],['youper.ai',' aituji/life']],
+health:
+[['ada.com',' aituji/Health'],['doctronic.com',' aituji/Health'],['docus.ai',' aituji/Health'],['exscientia.ai','
+aituji/Health'],['healthtap.com',' aituji/Health'],['healz.ai',' aituji/Health'],['khealth.com','
+aituji/Health'],['lunit.io',' aituji/Health'],['mediktor.com',' aituji/Health'],['suki.ai',' aituji/Health']],
+campus:
+[['century.tech',' aituji/campus'],['coursera.org',' aituji/campus'],['duolingo.com','
+aituji/campus'],['edu.google.com',' aituji/campus'],['iflytek.com',' aituji/campus'],['khanacademy.org','
+aituji/campus'],['magicschool.ai',' aituji/campus'],['quizlet.com',' aituji/campus'],['schoolai.com','
+aituji/campus'],['squirrelai.com',' aituji/campus']],
+work:
+[['chatgpt.com',' aituji/work'],['claude.ai',' aituji/work'],['clickup.com',' aituji/work'],['deepl.com','
+aituji/work'],['gemini.google.com',' aituji/work'],['github.com',' aituji/work'],['notion.so','
+aituji/work'],['otter.ai',' aituji/work'],['slack.com',' aituji/work'],['zapier.com',' aituji/work']],
+pro:
+[['abridge.com',' aituji/pro'],['eliseai.com',' aituji/pro'],['harvey.ai',' aituji/pro'],['ironclad.com','
+aituji/pro'],['luminance.com',' aituji/pro'],['numeric.io',' aituji/pro'],['procore.com',' aituji/pro'],['suki.ai','
+aituji/pro'],['veeva.com',' aituji/pro'],['viz.ai',' aituji/pro']],
+design:
+[['canva.com',' aituji/design'],['capcut.com',' aituji/design'],['figma.com',' aituji/design'],['framer.com','
+aituji/design'],['kittl.com',' aituji/design'],['looka.com',' aituji/design'],['pixso.cn','
+aituji/design'],['remove.bg',' aituji/design'],['tripo3d.ai',' aituji/design'],['uizard.io',' aituji/design']],
+image:
+[['adobe.com',' aituji/image'],['bfl.ai',' aituji/image'],['bing.com',' aituji/image'],['ideogram.ai','
+aituji/image'],['leonardo.ai',' aituji/image'],['midjourney.com',' aituji/image'],['openart.ai','
+aituji/image'],['recraft.ai',' aituji/image'],['seaart.ai',' aituji/image'],['stability.ai',' aituji/image']],
+video:
+[['genmo.ai',' aituji/video'],['hailuoai.video',' aituji/video'],['heygen.com',' aituji/video'],['invideo.io','
+aituji/video'],['klingai.com',' aituji/video'],['lumalabs.ai',' aituji/video'],['pika.art','
+aituji/video'],['pixverse.ai',' aituji/video'],['runwayml.com',' aituji/video'],['synthesia.io',' aituji/video']],
+audio:
+[['aiva.ai',' aituji/audio'],['descript.com',' aituji/audio'],['elevenlabs.io',' aituji/audio'],['lalal.ai','
+aituji/audio'],['murf.ai',' aituji/audio'],['podcastle.ai',' aituji/audio'],['riverside.fm','
+aituji/audio'],['speechify.com',' aituji/audio'],['suno.com',' aituji/audio'],['udio.com',' aituji/audio']],
+programming:
+[['bolt.new',' aituji/programming'],['claude.ai',' aituji/programming'],['cursor.com','
+aituji/programming'],['github.com',' aituji/programming'],['lovable.dev',' aituji/programming'],['openai.com','
+aituji/programming'],['qodo.ai',' aituji/programming'],['replit.com',' aituji/programming'],['tabnine.com','
+aituji/programming'],['v0.dev',' aituji/programming']],
+agent:
+[['character.ai',' aituji/agent'],['chatgpt.com',' aituji/agent'],['claude.ai',' aituji/agent'],['coze.com','
+aituji/agent'],['cursor.com',' aituji/agent'],['dify.ai',' aituji/agent'],['gamma.app',' aituji/agent'],['genspark.ai','
+aituji/agent'],['glean.com',' aituji/agent'],['grok.com',' aituji/agent'],['kimi.com',' aituji/agent'],['lovable.dev','
+aituji/agent'],['manus.im',' aituji/agent'],['openclaw.ai',' aituji/agent'],['replit.com',' aituji/agent']]
+};
+const TOP_SITES = [
+['bing.com','jpg',1],['canva.com','jpg',1],['character.ai','jpg',0],
+['chatgpt.com','jpg',0],['claude.ai','jpg',0],['cursor.com','jpg',0],
+['gamma.app','jpg',0],['grok.com','jpg',0],['kimi.com','png',0],
+['lmarena.ai','jpg',0],['lovable.dev','jpeg',0],['manus.im','png',0],
+['notion.so','png',1],['openai.com','jpeg',0],['perplexity.ai','jpg',1]
+];
+const $ = id => document.getElementById(id);
+const card = (href, img) =>
+`<a class="card" href="${href}" target="_blank" rel="noopener noreferrer" aria-label="${href}">
+  <img src="${img}" alt="${href}" loading="lazy">${href.replace(/^https:\/\/(www\.)?/, '')}</span>
+</a>`;
+const renderSections = () => {
+const boxes = { true: $('main-sections'), false: $('after-audio-sections') };
+$('sidebar').innerHTML = CATEGORIES.filter(c => c.nav)
+.map(c => `<button class="sidebar-item" data-target="${c.id}-title">${c.label} AI</button>`)
+.join('');
+CATEGORIES.forEach(({ id, title, main }) => {
+boxes[main].insertAdjacentHTML('beforeend',
+`<h2 id="${id}-title" class="section-title">${title}</h2>
+<div id="${id}-grid" class="card-grid" aria-label="${title}"></div>`);
+const sites = SITE_DATA[id];
+if (sites) {
+$(`${id}-grid`).innerHTML =
+sites.map(([d, dir]) => card(`https://${d}`, `${dir}/${d}.jpeg`)).join('');
+}
+});
+};
+const renderTopSites = () => {
+$('content-grid').innerHTML = TOP_SITES
+.map(([d, ext, www]) => card(`https://${www ? 'www.' : ''}${d}`, `AItuji-123/${d}.${ext}`))
+.join('');
+};
+const initSidebar = () => {
+const scroll = document.querySelector('.scroll-container');
+const isNarrow = matchMedia('(max-width:1024px)');
+
+$('sidebar').addEventListener('click', e => {
+const btn = e.target.closest('.sidebar-item');
+if (!btn) return;
+const target = $(btn.dataset.target);
+if (!target) return;
+$('sidebar').querySelectorAll('.sidebar-item')
+.forEach(b => b.classList.toggle('active', b === btn));
+if (isNarrow.matches) {
+target.scrollIntoView({ behavior:'smooth', block:'start' });
+} else if (scroll) {
+const pad = parseFloat(getComputedStyle(scroll).paddingTop) || 0;
+scroll.scrollTo({ top: target.offsetTop - pad, behavior:'smooth' });
+}
+});
+};
+const initToggle = () => {
+const tg = $('more-toggle'), sec = $('after-audio-sections');
+tg.addEventListener('click', () => {
+const open = tg.getAttribute('aria-expanded') !== 'true';
+tg.setAttribute('aria-expanded', String(open));
+sec.hidden = !open;
+tg.textContent = open ? 'Collapse More Categories' : 'Expand More Categories';
+});
+};
+const init = () => {
+renderSections();
+renderTopSites();
+initSidebar();
+initToggle();
+$('sidebar').querySelector('.sidebar-item')?.classList.add('active');
+};
+document.readyState === 'loading'
+? document.addEventListener('DOMContentLoaded', init)
+: init();
+})();
+</script>
+</body>
+
+</html>

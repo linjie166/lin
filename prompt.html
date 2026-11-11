@@ -1,0 +1,187 @@
+<html>
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+Prompt Generator</title>
+<script src="https://cdn.tailwindcss.com"></script>
+html { scroll-behavior: smooth; }
+body {
+background: linear-gradient(180deg, #edf9ee 0%, #dbeedc 42%, #d2ebd1 100%);
+color: #18332a;
+}
+.page-shell, .header-inner {
+width: min(100%, 1600px);
+margin: 0 auto;
+padding-left: 6.25%;
+padding-right: 6.25%;
+}
+.header-shell { position: relative; z-index: 50; pointer-events: none; }
+.header-inner { padding-top: 6px; pointer-events: auto; }
+.nav-row { height: 42px; display: flex; align-items: center; }
+.logo-wrap { width: 15%; min-width: 90px; display: flex; align-items: center; }
+.logo-wrap img {
+width: 84px; height: 80px; object-fit: contain;
+border-radius: 8px; box-shadow: 0 4px 10px rgba(16, 82, 48, 0.12);
+}
+.top-nav {
+width: 85%; display: flex; justify-content: space-evenly;
+align-items: center; transform: translateX(-5ch);
+}
+.top-nav a {
+font-size: 1.05rem; color: #1d2d25; font-weight: 600;
+letter-spacing: 0.02em; transition: color 0.2s ease;
+}
+.top-nav a:hover { color: #2f8a5b; }
+.banner-row {
+display: flex; align-items: center; justify-content: center;
+height: 52px; text-align: center;
+}
+.slogan {
+font-size: clamp(1.3rem, 1.8vw, 1.9rem); color: #d91d1d;
+font-weight: 800; letter-spacing: 0.04em; transform: translateX(-8ch);
+}
+.content-wrap { padding: 18px 0; }
+.content-wrap img, main img { max-width: 100%; height: auto; }
+.prompt-box {
+width: min(100%, 980px); margin: 0 auto; position: sticky; bottom: 8px;
+background: rgba(255, 255, 255, 0.7);
+border: 1px solid rgba(95, 146, 108, 0.26);
+-webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+border-radius: 20px; box-shadow: 0 10px 22px rgba(58, 98, 70, 0.12);
+overflow: hidden;
+}
+.prompt-input-wrap { position: relative; }
+.prompt-input {
+width: 100%; min-height: 303px; resize: vertical;
+border: none; outline: none; background: transparent;
+font-size: 1rem; line-height: 1.7; color: #1f2a25;
+padding: 14px 76px 14px 18px; text-indent: 4ch;
+}
+.prompt-input::placeholder { color: #8b9690; opacity: 1; text-align: center; text-indent: 0; }
+.composer-bar { position: absolute; inset: 0; pointer-events: none; }
+.tool-group { display: flex; align-items: center; gap: 10px; color: #1c3a2c; font-size: 0.96rem; }
+.tool-btn, .submit-btn, .action-icon {
+border: none; cursor: pointer;
+transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.tool-btn:hover, .submit-btn:hover, .action-icon:hover { transform: translateY(-1px); }
+.tool-btn {
+display: inline-flex; align-items: center; gap: 6px;
+background: rgba(255, 255, 255, 0.3);
+border: 1px solid rgba(66, 125, 82, 0.15);
+border-radius: 999px; padding: 8px 12px;
+}
+.tool-btn .icon { font-size: 1.2rem; line-height: 1; }
+.submit-btn {
+position: absolute; right: 14px; bottom: 14px; pointer-events: auto;
+width: 52px; height: 52px; border-radius: 50%;
+display: inline-flex; align-items: center; justify-content: center;
+background: linear-gradient(135deg, #8ac69a 0%, #4d9b73 100%);
+color: white; box-shadow: 0 10px 20px rgba(83, 150, 93, 0.25);
+}
+.action-bar {
+display: flex; align-items: center; justify-content: center;
+flex-wrap: wrap; gap: 10px; padding: 10px 0 6px;
+}
+.action-icons { display: flex; align-items: center; gap: 10px; position: relative; left: -12ch; }
+.action-icon {
+width: 30px; height: 30px; border-radius: 50%;
+background: rgba(255, 255, 255, 0.5);
+border: 1px solid rgba(62, 114, 80, 0.15); color: #1e3d30;
+}
+.note { text-align: center; font-size: 0.88rem; color: #3f514a; margin: 0; }
+.back-btn {
+position: fixed; right: 20px; bottom: 20px; z-index: 1000;
+padding: 11px 16px; border-radius: 999px;
+background: #0b8457; color: #fff; font-weight: 700;
+text-decoration: none; box-shadow: 0 6px 18px #18332a30;
+}
+@media (max-width: 1024px) {
+.top-nav { transform: none; gap: clamp(8px, 2vw, 24px); }
+.top-nav a { font-size: clamp(0.875rem, 1.5vw, 1.05rem); }
+.slogan { transform: none; font-size: clamp(1.1rem, 3vw, 1.7rem); }
+}
+@media (max-width: 768px) {
+.page-shell, .header-inner {
+padding-left: clamp(1rem, 4vw, 4%);
+padding-right: clamp(1rem, 4vw, 4%);
+}
+.nav-row { height: auto; min-height: 42px; padding: 12px 0 8px; flex-wrap: wrap; gap: 8px 12px; }
+.logo-wrap { width: auto; min-width: 0; }
+.logo-wrap img { width: clamp(52px, 12vw, 76px); height: auto; aspect-ratio: 1; }
+.top-nav {
+width: 100%; justify-content: flex-start; flex-wrap: wrap;
+gap: 6px clamp(12px, 4vw, 24px); transform: none;
+}
+.top-nav a { font-size: clamp(0.875rem, 3vw, 1rem); line-height: 1.4; white-space: nowrap; }
+.banner-row { height: auto; min-height: 52px; padding: 8px 0; }
+.slogan { max-width: 100%; padding: 0 8px; text-align: center; font-size: clamp(1rem, 4vw, 1.5rem); }
+.content-wrap { padding-top: 32px; }
+.composer-bar { flex-direction: column; align-items: stretch; }
+.tool-group { justify-content: space-between; flex-wrap: wrap; }
+.submit-btn { align-self: flex-end; }
+}
+</style>
+</head>
+
+<body class="font-sans">
+  <header class="header-shell">
+    <div class="header-inner">
+      <div class="nav-row">
+        <a class="logo-wrap" href="index.html" aria-label="Back to home">
+          <img src="./ok012_a.png" alt="Logo" />
+        </a>
+        <nav class="top-nav" aria-label="Primary navigation">
+          <a href="blog-generator.html">Blog</a>
+          <a href="prompt-generator.html">Prompt</a>
+          <a href="life-generator.html">Life</a>
+          <a href="generated.v1.html">Community</a>
+          <a href="pages/Join%20%26%20Login.html">Join &amp; Login</a>
+        </nav>
+      </div>
+      <div class="banner-row">
+        <div class="slogan">Learn and Practice AI Skills!</div>
+      </div>
+    </div>
+  </header>
+  <main class="page-shell content-wrap">
+    <section class="prompt-box" aria-label="Prompt input area">
+      <div class="prompt-input-wrap">
+        <textarea id="promptInput" class="prompt-input" aria-label="Prompt input"
+          placeholder="Enter your prompt, then click submit to generate content."></textarea>
+        <div class="composer-bar">
+          <button id="submitBtn" class="submit-btn" type="button" aria-label="Submit prompt"
+            data-destinations="https://www.deepl.com,https://www.procore.com,https://suki.ai,https://slack.com,https://viz.ai,https://eliseai.com,https://www.harvey.ai,https://claude.ai,https://clickup.com,https://youper.ai">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+              <path d="M3 11.5L20 3L15.5 20L11.5 13.5L3 11.5Z" fill="currentColor" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+    <div class="action-bar" aria-label="Generated results actions">
+      <div class="action-icons">
+        <button class="action-icon" type="button" aria-label="Copy">⧉</button>
+        <button class="action-icon" type="button" aria-label="Save">★</button>
+        <button class="action-icon" type="button" aria-label="Redo">↺</button>
+        <button class="action-icon" type="button" aria-label="Like">👍</button>
+        <button class="action-icon" type="button" aria-label="Dislike">👎</button>
+        <button class="action-icon" type="button" aria-label="Share">⇪</button>
+      </div>
+      <p class="note">Content is purely AI-generated and for reference only</p>
+      <nav class="textbook-updates" aria-label="Textbook updates">
+        <strong class="updates-label">Textbook Updates</strong>
+        <strong class="updates-prompt">AI-prompt:</strong>
+        <a href="pages/05.html">5. pages/05.md</a>
+        <a href="pages/06.html">6. pages/06.md</a>
+        <a href="pages/07.html">7. pages/07.md</a>
+        <a href="pages/">8. More…</a>
+      </nav>
+    </div>
+  </main>
+  <a class="back-btn" href="index.html">Back to home</a>
+  <script src="assets/generator.js" defer></script>
+</body>
+
+</html>
